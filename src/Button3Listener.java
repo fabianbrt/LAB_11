@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Random;
+
 public class Button3Listener implements ActionListener {
     JPanel panel1;
     JPanel panel2;
@@ -28,7 +30,9 @@ public class Button3Listener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        Random rand = new Random();
+        panel1.setBackground(setNewColor(rand.nextInt(4)));
+        panel2.setBackground(setNewColor(rand.nextInt(4)));
     }
 
 }
