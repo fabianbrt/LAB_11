@@ -1,15 +1,46 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+class Main extends JPanel {
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame ("Simple Frame");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 120);
+
+        JPanel panel1 = new JPanel();
+        JPanel panel2 = new JPanel();
+
+        JLabel l = new JLabel ("Label1 ");
+        JTextField tf = new JTextField("TextField1");
+        panel1.add(l);
+        panel1.add(tf);
+        panel1.setLayout(new FlowLayout());
+
+        JButton b1 = new JButton("Button 1");
+        JButton b2 = new JButton("Button 2");
+        JButton b3 = new JButton("Button 3");
+        panel2.add(b1);
+        panel2.add(b2);
+        panel2.add(b3);
+
+        Button1Listener button1Listener = new Button1Listener(l);
+        b1.addActionListener(button1Listener);
+
+        Button2Listener button2Listener = new Button2Listener(tf, l);
+        b2.addActionListener(button2Listener);
+
+        Button3Listener button3Listener = new Button3Listener(panel1, panel2);
+        b3.addActionListener(button3Listener);
+
+        JPanel p = new JPanel();
+        p.add(panel1);
+        p.add(panel2);
+        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
+
+
+        frame.setContentPane(p);
+        frame.setVisible(true);
     }
 }
